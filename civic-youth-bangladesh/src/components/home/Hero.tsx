@@ -26,13 +26,13 @@ export function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Large horizontal hero image */}
-        <div className="relative w-full h-[300px] md:h-[380px] lg:h-[460px] xl:h-[500px] overflow-hidden rounded-2xl shadow-xl mb-10 md:mb-14">
+        <div className="relative w-full h-[320px] md:h-[400px] lg:h-[480px] xl:h-[520px] overflow-hidden rounded-2xl shadow-xl mb-10 md:mb-14">
           <Image
             src="/images/hero-youth-group-jpg.png"
             alt="Young people representing civic leadership and youth engagement in Bangladesh"
             fill
             sizes="100vw"
-            className="object-cover object-[center_25%]"
+            className="object-cover object-[center_15%]"
             priority
           />
         </div>
