@@ -14,8 +14,17 @@
   --color-cy-light: #F5F7F6;
   --color-cy-border: #E5E7EB;
 
+  --color-dark-bg: #0B1210;
+  --color-dark-card: #16211D;
+  --color-dark-card-hover: #1C2A25;
+  --color-dark-secondary: #111A17;
+  --color-dark-border: #2A3A33;
+  --color-dark-text: #E8EDEA;
+  --color-dark-muted: #9CA8A2;
+
   --font-heading: "Poppins", sans-serif;
   --font-body: "Inter", sans-serif;
+  --font-bangla: "Noto Sans Bengali", sans-serif;
 }
 
 html {
@@ -30,6 +39,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark body,
+html.dark body {
+  color: var(--color-dark-text);
+  background: var(--color-dark-bg);
+}
+
 h1,
 h2,
 h3,
@@ -37,6 +52,15 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: var(--color-dark-text);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -56,4 +80,9 @@ h6 {
 ::selection {
   background-color: #138A3633;
   color: #222222;
+}
+
+html.dark ::selection {
+  background-color: #1AAF4544;
+  color: #E8EDEA;
 }

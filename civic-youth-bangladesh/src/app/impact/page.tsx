@@ -1,46 +1,91 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import { impactMetrics, impactTargetMetrics } from "@/data/impact";
 import { TrendingUp, Target } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Impact",
-  description:
-    "CYB's proposed impact targets and the outcomes we aim to achieve through civic leadership and community engagement programs.",
-};
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useTheme } from "@/components/providers/ThemeProvider";
+import { getTranslation } from "@/i18n";
 
 export default function ImpactPage() {
+  const { language } = useLanguage();
+  const { theme } = useTheme();
+  const t = getTranslation(language);
+
+  const metricKeyMap: Record<string, string> = {
+    "youth-reached": "youthReached",
+    "active-volunteers": "activeVolunteers",
+    "district-presence": "districtPresence",
+    "community-projects": "communityProjects",
+    "policy-dialogues": "policyDialogues",
+    "leadership-programs": "leadershipPrograms",
+    "target-youth": "youthReached",
+    "target-volunteers": "activeVolunteers",
+    "target-districts": "districtPresence",
+    "target-projects": "communityProjects",
+    "target-dialogues": "policyDialogues",
+    "target-programs": "leadershipPrograms",
+  };
+
   return (
     <>
       {/* Hero */}
-      <section className="bg-cy-light pt-32 pb-16 lg:pt-40 lg:pb-20">
+      <section
+        className={`pt-32 pb-16 lg:pt-40 lg:pb-20 ${
+          theme === "dark" ? "bg-dark-bg" : "bg-cy-light"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold text-cy-dark mb-6">
-              Our Impact
+            <h1
+              className={`font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 ${
+                theme === "dark" ? "text-dark-text" : "text-cy-dark"
+              }`}
+            >
+              {t.impactPage.title}
             </h1>
-            <p className="text-lg text-cy-gray leading-relaxed">
-              Tracking our progress toward building a more civic-minded,
-              engaged and leadership-ready generation.
+            <p
+              className={`text-lg leading-relaxed ${
+                theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+              }`}
+            >
+              {t.impactPage.subtitle}
             </p>
           </div>
         </div>
       </section>
 
       {/* Current Status */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section
+        className={`py-20 lg:py-28 ${
+          theme === "dark" ? "bg-dark-secondary" : "bg-white"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-14">
             <div className="text-center lg:text-left">
-              <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-cy-dark mb-4">
-                Current Status
+              <h2
+                className={`font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4 ${
+                  theme === "dark" ? "text-dark-text" : "text-cy-dark"
+                }`}
+              >
+                {t.impactPage.currentStatus}
               </h2>
-              <p className="text-lg text-cy-gray max-w-2xl mx-auto lg:mx-0">
-                CYB is in its development phase. Verified impact data will be
-                published as programs are completed and evaluated.
+              <p
+                className={`text-lg max-w-2xl mx-auto lg:mx-0 ${
+                  theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+                }`}
+              >
+                {t.impactPage.currentStatusText}
               </p>
             </div>
-            <div className="relative rounded-2xl overflow-hidden border border-cy-border">
+            <div
+              className={`relative rounded-2xl overflow-hidden ${
+                theme === "dark"
+                  ? "border border-dark-border"
+                  : "border border-cy-border"
+              }`}
+            >
               <div className="relative aspect-[16/9]">
                 <Image
                   src="/images/public-speaking-seminar.png.png"
@@ -56,17 +101,35 @@ export default function ImpactPage() {
             {impactMetrics.map((metric) => (
               <div
                 key={metric.id}
-                className="bg-cy-light rounded-2xl p-6 text-center border border-cy-border"
+                className={`rounded-2xl p-6 text-center ${
+                  theme === "dark"
+                    ? "bg-dark-card border border-dark-border"
+                    : "bg-cy-light border border-cy-border"
+                }`}
               >
-                <div className="font-[family-name:var(--font-heading)] text-3xl lg:text-4xl font-bold text-cy-dark mb-1">
+                <div
+                  className={`font-[family-name:var(--font-heading)] text-3xl lg:text-4xl font-bold mb-1 ${
+                    theme === "dark" ? "text-dark-text" : "text-cy-dark"
+                  }`}
+                >
                   {metric.value}
                 </div>
-                <div className="text-sm text-cy-gray font-medium mb-2">
-                  {metric.label}
+                <div
+                  className={`text-sm font-medium mb-2 ${
+                    theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+                  }`}
+                >
+                  {t.metrics[metricKeyMap[metric.id] as keyof typeof t.metrics] || metric.label}
                 </div>
-                <span className="inline-flex items-center gap-1 text-xs text-cy-gray bg-cy-border/50 px-2 py-0.5 rounded-full">
+                <span
+                  className={`inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full ${
+                    theme === "dark"
+                      ? "text-dark-muted bg-dark-border/50"
+                      : "text-cy-gray bg-cy-border/50"
+                  }`}
+                >
                   <TrendingUp className="w-3 h-3" />
-                  Coming soon
+                  {t.impact.comingSoon}
                 </span>
               </div>
             ))}
@@ -79,11 +142,10 @@ export default function ImpactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
-              Proposed Impact Targets
+              {t.impactPage.proposedTargets}
             </h2>
             <p className="text-lg text-cy-green-light max-w-2xl mx-auto">
-              Aspirational goals guiding CYB&apos;s program design and growth
-              strategy.
+              {t.impactPage.proposedTargetsText}
             </p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
@@ -102,16 +164,14 @@ export default function ImpactPage() {
                   {metric.suffix || ""}
                 </div>
                 <div className="text-sm text-cy-green-light font-medium">
-                  {metric.label}
+                  {t.metrics[metricKeyMap[metric.id] as keyof typeof t.metrics] || metric.label}
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-10 text-center">
             <p className="text-sm text-white/70 italic">
-              These are proposed targets, not verified achievements. Actual
-              verified data will be published as programs are completed and
-              independently evaluated.
+              {t.impactPage.disclaimer}
             </p>
           </div>
         </div>

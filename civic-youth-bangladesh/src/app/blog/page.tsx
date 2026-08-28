@@ -1,13 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import { articles } from "@/data/articles";
 import { ArrowRight, Clock } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Insights, analysis and perspectives from Civic Youth Bangladesh on civic education, youth leadership and community engagement.",
-};
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useTheme } from "@/components/providers/ThemeProvider";
+import { getTranslation } from "@/i18n";
 
 const categoryColors: Record<string, string> = {
   "Civic Education": "bg-cy-green-50 text-cy-green",
@@ -20,30 +18,54 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function BlogPage() {
+  const { language } = useLanguage();
+  const { theme } = useTheme();
+  const t = getTranslation(language);
+
   return (
     <>
       {/* Hero */}
-      <section className="bg-cy-light pt-32 pb-16 lg:pt-40 lg:pb-20">
+      <section
+        className={`pt-32 pb-16 lg:pt-40 lg:pb-20 ${
+          theme === "dark" ? "bg-dark-bg" : "bg-cy-light"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold text-cy-dark mb-6">
-              Blog & Insights
+            <h1
+              className={`font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 ${
+                theme === "dark" ? "text-dark-text" : "text-cy-dark"
+              }`}
+            >
+              {t.blog.title}
             </h1>
-            <p className="text-lg text-cy-gray leading-relaxed">
-              Perspectives, analysis and stories from Civic Youth Bangladesh.
+            <p
+              className={`text-lg leading-relaxed ${
+                theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+              }`}
+            >
+              {t.blog.subtitle}
             </p>
           </div>
         </div>
       </section>
 
       {/* Articles */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section
+        className={`py-20 lg:py-28 ${
+          theme === "dark" ? "bg-dark-secondary" : "bg-white"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {articles.map((article) => (
               <article
                 key={article.id}
-                className="group bg-cy-light rounded-2xl overflow-hidden border border-cy-border hover:shadow-lg transition-all duration-300 flex flex-col"
+                className={`group rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${
+                  theme === "dark"
+                    ? "bg-dark-card border border-dark-border"
+                    : "bg-cy-light border border-cy-border"
+                }`}
               >
                 <div className="aspect-[16/10] relative overflow-hidden">
                   {article.image ? (
@@ -66,30 +88,50 @@ export default function BlogPage() {
                         "bg-gray-100 text-gray-700"
                       }`}
                     >
-                      {article.category}
+                      {t.articlesData[article.id as keyof typeof t.articlesData]?.category || article.category}
                     </span>
-                    <span className="flex items-center gap-1 text-xs text-cy-gray">
+                    <span
+                      className={`flex items-center gap-1 text-xs ${
+                        theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+                      }`}
+                    >
                       <Clock className="w-3 h-3" />
-                      {article.readTime}
+                      {t.articlesData[article.id as keyof typeof t.articlesData]?.readTime || article.readTime}
                     </span>
                   </div>
-                  <h2 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-cy-dark mb-2 group-hover:text-cy-green transition-colors">
-                    {article.title}
+                  <h2
+                    className={`font-[family-name:var(--font-heading)] text-lg font-semibold mb-2 group-hover:text-cy-green transition-colors ${
+                      theme === "dark" ? "text-dark-text" : "text-cy-dark"
+                    }`}
+                  >
+                    {t.articlesData[article.id as keyof typeof t.articlesData]?.title || article.title}
                   </h2>
-                  <p className="text-sm text-cy-gray leading-relaxed flex-1 line-clamp-3">
-                    {article.excerpt}
+                  <p
+                    className={`text-sm leading-relaxed flex-1 line-clamp-3 ${
+                      theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+                    }`}
+                  >
+                    {t.articlesData[article.id as keyof typeof t.articlesData]?.excerpt || article.excerpt}
                   </p>
-                  <div className="flex items-center justify-between pt-4 mt-4 border-t border-cy-border">
-                    <span className="text-xs text-cy-gray">
+                  <div
+                    className={`flex items-center justify-between pt-4 mt-4 border-t ${
+                      theme === "dark" ? "border-dark-border" : "border-cy-border"
+                    }`}
+                  >
+                    <span
+                      className={`text-xs ${
+                        theme === "dark" ? "text-dark-muted" : "text-cy-gray"
+                      }`}
+                    >
                       {article.author} &middot;{" "}
-                      {new Date(article.date).toLocaleDateString("en-US", {
+                      {new Date(article.date).toLocaleDateString(language === "bn" ? "bn-BD" : "en-US", {
                         year: "numeric",
                         month: "short",
                         day: "numeric",
                       })}
                     </span>
                     <span className="inline-flex items-center gap-1 text-sm font-semibold text-cy-green">
-                      Read
+                      {t.blog.read}
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>

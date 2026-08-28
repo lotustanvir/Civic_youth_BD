@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { thematicAreas } from "@/data/thematicAreas";
 import {
@@ -12,6 +14,9 @@ import {
   Lightbulb,
   ArrowRight,
 } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useTheme } from "@/components/providers/ThemeProvider";
+import { getTranslation } from "@/i18n";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   BookOpen,
@@ -26,18 +31,22 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export function ThematicAreas() {
+  const { language } = useLanguage();
+  const { theme } = useTheme();
+  const t = getTranslation(language);
+
+  const isDark = theme === "dark";
+
   return (
-    <section className="py-20 lg:py-28 bg-cy-light">
+    <section className={`py-20 lg:py-28 ${isDark ? "bg-dark-secondary" : "bg-cy-light"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl font-bold text-cy-dark mb-4">
-            THEMATIC AREAS
+          <h2 className={`font-[family-name:var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 ${isDark ? "text-dark-text" : "text-cy-dark"}`}>
+            {t.thematicAreas.sectionTitle}
           </h2>
-          <p className="text-lg text-cy-gray leading-relaxed">
-            Empowering young people with the knowledge, leadership and
-            opportunities to strengthen communities and shape Bangladesh&apos;s
-            future.
+          <p className={`text-lg leading-relaxed ${isDark ? "text-dark-muted" : "text-cy-gray"}`}>
+            {t.thematicAreas.sectionSubtitle}
           </p>
         </div>
 
@@ -46,11 +55,12 @@ export function ThematicAreas() {
           {thematicAreas.map((area) => {
             const Icon = iconMap[area.icon];
             const isGreen = area.accentColor === "green";
+            const areaTranslation = t.thematicAreas.areas[area.id as keyof typeof t.thematicAreas.areas];
 
             return (
               <div
                 key={area.id}
-                className="group bg-white rounded-2xl p-8 border border-cy-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                className={`group rounded-2xl p-8 border shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-cy-green/30 transition-all duration-300 flex flex-col ${isDark ? "bg-dark-card border-dark-border" : "bg-white border-cy-border"}`}
               >
                 <div
                   className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 transition-colors ${
@@ -67,11 +77,11 @@ export function ThematicAreas() {
                     />
                   )}
                 </div>
-                <h3 className="font-[family-name:var(--font-heading)] text-xl font-semibold text-cy-dark mb-3">
-                  {area.title}
+                <h3 className={`font-[family-name:var(--font-heading)] text-xl font-semibold mb-3 ${isDark ? "text-dark-text" : "text-cy-dark"}`}>
+                  {areaTranslation?.title ?? area.title}
                 </h3>
-                <p className="text-cy-gray text-sm leading-relaxed mb-5 flex-1">
-                  {area.description}
+                <p className={`text-sm leading-relaxed mb-5 flex-1 ${isDark ? "text-dark-muted" : "text-cy-gray"}`}>
+                  {areaTranslation?.description ?? area.description}
                 </p>
                 <Link
                   href={area.href}
@@ -81,7 +91,7 @@ export function ThematicAreas() {
                       : "text-cy-red hover:text-cy-red-dark"
                   }`}
                 >
-                  Learn More
+                  {t.thematicAreas.learnMore}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>

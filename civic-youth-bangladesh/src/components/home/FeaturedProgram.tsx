@@ -1,11 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { featuredProgram } from "@/data/programs";
 import { ArrowRight, Star } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getTranslation } from "@/i18n";
 
 export function FeaturedProgram() {
+  const { language } = useLanguage();
+  const t = getTranslation(language);
+
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-white dark:bg-dark-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative bg-gradient-to-br from-cy-dark to-cy-dark/95 rounded-3xl overflow-hidden">
           <div className="absolute inset-0 opacity-10">
@@ -18,27 +25,27 @@ export function FeaturedProgram() {
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cy-green/20 text-cy-green-light text-xs font-bold uppercase tracking-wider rounded-full mb-6">
                 <Star className="w-3.5 h-3.5" />
-                {featuredProgram.badge}
+                {t.featuredProgram.badge}
               </div>
               <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                {featuredProgram.title}
+                {t.programsData[featuredProgram.id as keyof typeof t.programsData]?.title || featuredProgram.title}
               </h2>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                {featuredProgram.shortDescription}
+                {t.programsData[featuredProgram.id as keyof typeof t.programsData]?.shortDescription || featuredProgram.shortDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href={featuredProgram.href}
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-cy-green text-white font-semibold rounded-lg hover:bg-cy-green-light transition-all duration-200 shadow-sm hover:shadow-md group"
                 >
-                  View Program
+                  {t.featuredProgram.viewProgram}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/get-involved"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
                 >
-                  Apply Now
+                  {t.featuredProgram.applyNow}
                 </Link>
               </div>
             </div>

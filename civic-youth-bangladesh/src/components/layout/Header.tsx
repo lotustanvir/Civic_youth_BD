@@ -3,22 +3,38 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { navigation, ctaButton } from "@/data/navigation";
+import { ctaButton } from "@/data/navigation";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useTheme } from "@/components/providers/ThemeProvider";
+import { getTranslation } from "@/i18n";
 import {
   Menu,
   X,
-  ChevronDown,
   Search,
+  Sun,
+  Moon,
 } from "lucide-react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const headerRef = useRef<HTMLElement>(null);
+  const { language, setLanguage } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const t = getTranslation(language);
+
+  const navItems = [
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.thematicAreas, href: "/thematic-areas" },
+    { label: t.nav.programs, href: "/programs" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.impact, href: "/impact" },
+    { label: t.nav.getInvolved, href: "/get-involved" },
+    { label: t.nav.opportunities, href: "/opportunities" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,26 +55,18 @@ export function Header() {
     };
   }, [mobileOpen]);
 
-  const handleDropdownEnter = (label: string) => {
-    setActiveDropdown(label);
-  };
-
-  const handleDropdownLeave = () => {
-    setActiveDropdown(null);
-  };
-
-  const toggleMobileExpanded = (label: string) => {
-    setMobileExpanded(mobileExpanded === label ? null : label);
-  };
+  const headerBg = theme === "dark"
+    ? isScrolled
+      ? "bg-dark-bg/95 backdrop-blur-md shadow-sm border-b border-dark-border py-2"
+      : "bg-dark-bg py-4"
+    : isScrolled
+      ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-cy-border py-2"
+      : "bg-white py-4";
 
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-cy-border py-2"
-          : "bg-white py-4"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -73,69 +81,71 @@ export function Header() {
               priority
             />
             <div className="hidden sm:flex flex-col">
-              <span className="font-[family-name:var(--font-heading)] text-base lg:text-lg font-bold text-cy-dark leading-tight">
-                Civic Youth Bangladesh
+              <span className={`font-[family-name:var(--font-heading)] text-base lg:text-lg font-bold leading-tight ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
+                {language === "bn" ? "সিভিক ইয়ুথ বাংলাদেশ" : "Civic Youth Bangladesh"}
               </span>
-              <span className="text-[11px] lg:text-xs text-cy-gray leading-tight">
-                Engage Today, Lead Tomorrow.
+              <span className={`text-[11px] lg:text-xs leading-tight ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
+                {language === "bn" ? "আজই সম্পৃক্ত হোন, আগামীর নেতৃত্ব দিন।" : "Engage Today, Lead Tomorrow."}
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-            {navigation.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() =>
-                  item.children && handleDropdownEnter(item.label)
-                }
-                onMouseLeave={handleDropdownLeave}
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
+                  theme === "dark"
+                    ? "text-dark-text hover:text-cy-green hover:bg-dark-card"
+                    : "text-cy-dark hover:text-cy-green hover:bg-cy-green-50"
+                }`}
               >
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-cy-dark hover:text-cy-green transition-colors rounded-lg hover:bg-cy-green-50"
-                >
-                  {item.label}
-                  {item.children && (
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform ${
-                        activeDropdown === item.label ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
-                </Link>
-
-                {/* Dropdown */}
-                {item.children && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 pt-1 z-50">
-                    <div className="bg-white rounded-xl shadow-lg border border-cy-border py-2 min-w-[220px]">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          className="block px-4 py-2.5 text-sm text-cy-dark hover:text-cy-green hover:bg-cy-green-50 transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+                {item.label}
+              </Link>
             ))}
           </nav>
 
           {/* Right section */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {/* Search */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 text-cy-dark hover:text-cy-green transition-colors rounded-lg hover:bg-cy-green-50"
+              className={`p-2 transition-colors rounded-lg ${
+                theme === "dark"
+                  ? "text-dark-text hover:text-cy-green hover:bg-dark-card"
+                  : "text-cy-dark hover:text-cy-green hover:bg-cy-green-50"
+              }`}
               aria-label="Search"
             >
               <Search className="w-5 h-5" />
+            </button>
+
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLanguage(language === "en" ? "bn" : "en")}
+              className={`px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                theme === "dark"
+                  ? "text-dark-text hover:bg-dark-card border border-dark-border"
+                  : "text-cy-dark hover:bg-cy-green-50 border border-cy-border"
+              }`}
+              aria-label={`Switch to ${language === "en" ? "Bangla" : "English"}`}
+            >
+              {language === "en" ? "বাংলা" : "EN"}
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className={`p-2 transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cy-green focus-visible:ring-offset-2 ${
+                theme === "dark"
+                  ? "text-dark-text hover:bg-dark-card focus-visible:ring-offset-dark-bg"
+                  : "text-cy-dark hover:text-cy-green hover:bg-cy-green-50"
+              }`}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
             {/* CTA Button - Desktop */}
@@ -143,35 +153,37 @@ export function Header() {
               href={ctaButton.href}
               className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 bg-cy-green text-white text-sm font-semibold rounded-lg hover:bg-cy-green-dark transition-all duration-200 shadow-sm hover:shadow-md"
             >
-              {ctaButton.label}
+              {t.nav.joinCta}
             </Link>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 text-cy-dark hover:text-cy-green transition-colors rounded-lg"
+              className={`lg:hidden p-2 transition-colors rounded-lg ${
+                theme === "dark" ? "text-dark-text" : "text-cy-dark"
+              }`}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
-              {mobileOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Search Bar */}
         {searchOpen && (
-          <div className="mt-3 pb-2 border-t border-cy-border pt-3">
+          <div className={`mt-3 pb-2 border-t pt-3 ${theme === "dark" ? "border-dark-border" : "border-cy-border"}`}>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-cy-gray" />
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`} />
               <input
                 type="search"
                 placeholder="Search CYB..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-cy-light border border-cy-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cy-green/30 focus:border-cy-green transition-all"
+                className={`w-full pl-10 pr-4 py-3 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cy-green/30 focus:border-cy-green transition-all ${
+                  theme === "dark"
+                    ? "bg-dark-card border-dark-border text-dark-text placeholder:text-dark-muted"
+                    : "bg-cy-light border-cy-border"
+                }`}
                 autoFocus
               />
             </div>
@@ -181,7 +193,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-0 bg-white z-50 overflow-y-auto">
+        <div className={`lg:hidden fixed inset-0 top-0 z-50 overflow-y-auto ${theme === "dark" ? "bg-dark-bg" : "bg-white"}`}>
           <div className="p-4">
             <div className="flex items-center justify-between mb-6">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
@@ -194,17 +206,17 @@ export function Header() {
                   priority
                 />
                 <div className="flex flex-col">
-                  <span className="font-[family-name:var(--font-heading)] text-sm font-bold text-cy-dark leading-tight">
-                    Civic Youth Bangladesh
+                  <span className={`font-[family-name:var(--font-heading)] text-sm font-bold leading-tight ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
+                    {language === "bn" ? "সিভিক ইয়ুথ বাংলাদেশ" : "Civic Youth Bangladesh"}
                   </span>
-                  <span className="text-[10px] text-cy-gray leading-tight">
-                    Engage Today, Lead Tomorrow.
+                  <span className={`text-[10px] leading-tight ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
+                    {language === "bn" ? "আজই সম্পৃক্ত হোন, আগামীর নেতৃত্ব দিন।" : "Engage Today, Lead Tomorrow."}
                   </span>
                 </div>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 text-cy-dark hover:text-cy-red transition-colors"
+                className={`p-2 transition-colors ${theme === "dark" ? "text-dark-text hover:text-cy-red" : "text-cy-dark hover:text-cy-red"}`}
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />
@@ -212,45 +224,19 @@ export function Header() {
             </div>
 
             <nav className="space-y-1" aria-label="Mobile navigation">
-              {navigation.map((item) => (
+              {navItems.map((item) => (
                 <div key={item.label}>
-                  {item.children ? (
-                    <>
-                      <button
-                        onClick={() => toggleMobileExpanded(item.label)}
-                        className="w-full flex items-center justify-between px-4 py-3 text-base font-medium text-cy-dark hover:bg-cy-green-50 rounded-lg transition-colors"
-                      >
-                        {item.label}
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
-                            mobileExpanded === item.label ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {mobileExpanded === item.label && (
-                        <div className="pl-4 space-y-1">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.label}
-                              href={child.href}
-                              onClick={() => setMobileOpen(false)}
-                              className="block px-4 py-2.5 text-sm text-cy-gray hover:text-cy-green hover:bg-cy-green-50 rounded-lg transition-colors"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="block px-4 py-3 text-base font-medium text-cy-dark hover:bg-cy-green-50 rounded-lg transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                      theme === "dark"
+                        ? "text-dark-text hover:bg-dark-card"
+                        : "text-cy-dark hover:bg-cy-green-50"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
                 </div>
               ))}
             </nav>
@@ -261,7 +247,7 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="block w-full text-center px-5 py-3 bg-cy-green text-white font-semibold rounded-lg hover:bg-cy-green-dark transition-all"
               >
-                {ctaButton.label}
+                {t.nav.joinCta}
               </Link>
             </div>
           </div>
