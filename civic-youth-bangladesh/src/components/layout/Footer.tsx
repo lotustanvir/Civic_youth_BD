@@ -47,6 +47,12 @@ export function Footer() {
                 className="h-10 w-auto object-contain"
               />
             </Link>
+            <p className="font-[family-name:var(--font-heading)] text-base font-bold text-white mb-1">
+              Civic Youth Bangladesh
+            </p>
+            <p className="text-xs text-gray-500 mb-4">
+              Engage Today, Lead Tomorrow.
+            </p>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               A national, non-partisan, youth-led civic leadership organization
               developing active citizenship, ethical leadership and community

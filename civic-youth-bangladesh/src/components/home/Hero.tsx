@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -12,32 +12,35 @@ export function Hero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-center">
           {/* Content */}
           <div className="max-w-2xl">
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
-              <span className="text-cy-green">ENGAGE TODAY,</span>
-              <br />
-              <span className="text-cy-red">LEAD TOMORROW</span>
+            <h1 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+              <span className="text-cy-green">Engage Today,</span>{" "}
+              <span className="text-cy-red">Lead Tomorrow.</span>
             </h1>
-            <p className="text-lg sm:text-xl text-cy-gray leading-relaxed mb-8 max-w-xl">
-              Civic Youth Bangladesh empowers young people to become informed
-              citizens, ethical leaders and active changemakers contributing to a
-              just, inclusive and sustainable Bangladesh.
+            <p className="text-sm md:text-base lg:text-[17px] text-cy-gray leading-7 mb-8 max-w-xl">
+              Civic Youth Bangladesh (CYB) is a non-profit, non-partisan,
+              youth-led organization committed to raising awareness and advocating
+              for civil and political rights. CYB empowers young people aged
+              16–35 through capacity building and civic education, equipping them
+              with the knowledge, leadership skills, and opportunities needed to
+              participate meaningfully and peacefully in democratic life. CYB
+              envisions a generation of informed, skilled, and engaged young
+              leaders who contribute to democratic development and strengthen
+              community resilience in Bangladesh. Its approach combines leadership
+              development, civic education, and youth-led community action with
+              creative cultural tools and social media. By making civic
+              engagement more accessible, relatable, and engaging, CYB seeks to
+              inspire young people to become active contributors to their
+              communities and to Bangladesh&apos;s democratic future.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/get-involved"
+                href="/programs"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-cy-green text-white font-semibold rounded-lg hover:bg-cy-green-dark transition-all duration-200 shadow-sm hover:shadow-md group"
               >
-                JOIN THE MOVEMENT
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/programs"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-cy-dark font-semibold rounded-lg border-2 border-cy-border hover:border-cy-green hover:text-cy-green transition-all duration-200 group"
-              >
-                EXPLORE PROGRAMS
+                Our Programmes
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

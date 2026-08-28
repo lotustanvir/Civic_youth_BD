@@ -62,8 +62,8 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0 group">
+          {/* Logo + Branding */}
+          <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
             <Image
               src="/images/lgo.jpeg"
               alt="Civic Youth Bangladesh Logo"
@@ -72,6 +72,14 @@ export function Header() {
               className="h-12 w-auto md:h-14 lg:h-16 object-contain"
               priority
             />
+            <div className="hidden sm:flex flex-col">
+              <span className="font-[family-name:var(--font-heading)] text-base lg:text-lg font-bold text-cy-dark leading-tight">
+                Civic Youth Bangladesh
+              </span>
+              <span className="text-[11px] lg:text-xs text-cy-gray leading-tight">
+                Engage Today, Lead Tomorrow.
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -176,7 +184,7 @@ export function Header() {
         <div className="lg:hidden fixed inset-0 top-0 bg-white z-50 overflow-y-auto">
           <div className="p-4">
             <div className="flex items-center justify-between mb-6">
-              <Link href="/" onClick={() => setMobileOpen(false)}>
+              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
                 <Image
                   src="/images/lgo.jpeg"
                   alt="Civic Youth Bangladesh Logo"
@@ -185,6 +193,14 @@ export function Header() {
                   className="h-12 w-auto object-contain"
                   priority
                 />
+                <div className="flex flex-col">
+                  <span className="font-[family-name:var(--font-heading)] text-sm font-bold text-cy-dark leading-tight">
+                    Civic Youth Bangladesh
+                  </span>
+                  <span className="text-[10px] text-cy-gray leading-tight">
+                    Engage Today, Lead Tomorrow.
+                  </span>
+                </div>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}

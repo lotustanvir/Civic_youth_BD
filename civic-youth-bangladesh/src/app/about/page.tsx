@@ -114,6 +114,16 @@ export default function AboutPage() {
                     sizes="(max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
                   />
+                  {/* Official CYB logo overlay */}
+                  <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg p-1.5 shadow-md">
+                    <Image
+                      src="/images/lgo.jpeg"
+                      alt="Civic Youth Bangladesh Logo"
+                      width={80}
+                      height={50}
+                      className="h-10 w-auto object-contain"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="relative rounded-2xl overflow-hidden border border-cy-border">

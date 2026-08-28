@@ -25,10 +25,6 @@ export const navigation: NavigationItem[] = [
     href: "/programs",
   },
   {
-    label: "Opportunities",
-    href: "/opportunities",
-  },
-  {
     label: "Blog",
     href: "/blog",
   },

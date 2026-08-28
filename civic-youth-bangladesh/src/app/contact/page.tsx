@@ -99,6 +99,16 @@ export default function ContactPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
+                  {/* Official CYB logo overlay */}
+                  <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg p-1.5 shadow-md">
+                    <Image
+                      src="/images/lgo.jpeg"
+                      alt="Civic Youth Bangladesh Logo"
+                      width={80}
+                      height={50}
+                      className="h-10 w-auto object-contain"
+                    />
+                  </div>
                 </div>
                 <h3 className="font-[family-name:var(--font-heading)] font-semibold text-cy-dark mb-2">
                   Media Inquiries
