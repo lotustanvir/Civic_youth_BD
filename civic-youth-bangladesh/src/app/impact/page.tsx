@@ -144,7 +144,7 @@ export default function ImpactPage() {
             <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
               {t.impactPage.proposedTargets}
             </h2>
-            <p className="text-lg text-cy-green-light max-w-2xl mx-auto">
+            <p className="text-lg text-white/85 font-medium max-w-2xl mx-auto">
               {t.impactPage.proposedTargetsText}
             </p>
           </div>
@@ -152,10 +152,10 @@ export default function ImpactPage() {
             {impactTargetMetrics.map((metric) => (
               <div
                 key={metric.id}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10"
+                className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
               >
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <Target className="w-4 h-4 text-cy-green-light" />
+                  <Target className="w-4 h-4 text-white" />
                 </div>
                 <div className="font-[family-name:var(--font-heading)] text-3xl lg:text-4xl font-bold text-white mb-1">
                   {typeof metric.value === "number"
@@ -163,14 +163,14 @@ export default function ImpactPage() {
                     : metric.value}
                   {metric.suffix || ""}
                 </div>
-                <div className="text-sm text-cy-green-light font-medium">
+                <div className="text-sm text-white/90 font-medium">
                   {t.metrics[metricKeyMap[metric.id] as keyof typeof t.metrics] || metric.label}
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-10 text-center">
-            <p className="text-sm text-white/70 italic">
+            <p className="text-sm text-white/75 italic">
               {t.impactPage.disclaimer}
             </p>
           </div>
