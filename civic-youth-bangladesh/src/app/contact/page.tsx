@@ -103,7 +103,7 @@ export default function ContactPage() {
                   {/* Official CYB logo overlay */}
                   <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg p-1.5 shadow-md">
                     <Image
-                      src="/images/lgo.jpeg"
+                      src="/images/cyb-logo.png"
                       alt="Civic Youth Bangladesh Logo"
                       width={80}
                       height={50}

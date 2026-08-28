@@ -73,7 +73,7 @@ export function Header() {
           <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
             <div className={`flex-shrink-0 rounded-xl p-1.5 ${theme === "dark" ? "bg-[#111A17]" : "bg-white"}`}>
               <Image
-                src="/images/lgo.jpeg"
+                src="/images/cyb-logo.png"
                 alt="Civic Youth Bangladesh Logo"
                 width={200}
                 height={80}
@@ -199,7 +199,7 @@ export function Header() {
             <div className="flex items-center justify-between mb-6">
               <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
                 <Image
-                  src="/images/lgo.jpeg"
+                  src="/images/cyb-logo.png"
                   alt="Civic Youth Bangladesh Logo"
                   width={200}
                   height={48}

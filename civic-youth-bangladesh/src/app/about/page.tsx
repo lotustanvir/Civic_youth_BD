@@ -87,7 +87,7 @@ export default function AboutPage() {
                   />
                   <div className={`absolute bottom-3 left-3 rounded-lg p-1.5 shadow-md ${isDark ? "bg-dark-card/90" : "bg-white/90"} backdrop-blur-sm`}>
                     <Image
-                      src="/images/lgo.jpeg"
+                      src="/images/cyb-logo.png"
                       alt="Civic Youth Bangladesh Logo"
                       width={80}
                       height={50}
