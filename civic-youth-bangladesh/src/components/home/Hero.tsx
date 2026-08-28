@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, Sun, Moon } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { getTranslation } from "@/i18n";
 
 export function Hero() {
-  const { language, setLanguage } = useLanguage();
-  const { theme, setTheme } = useTheme();
+  const { language } = useLanguage();
+  const { theme } = useTheme();
   const t = getTranslation(language);
 
   return (
@@ -25,54 +25,6 @@ export function Hero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Language & Theme toggles */}
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 z-10 flex items-center gap-2">
-          {/* Language toggle */}
-          <div className="flex items-center rounded-full border border-gray-300 dark:border-gray-600 overflow-hidden text-sm font-medium">
-            <button
-              onClick={() => setLanguage("en")}
-              aria-label="Switch language to English"
-              aria-pressed={language === "en"}
-              className={`px-3 py-1.5 transition-colors ${
-                language === "en"
-                  ? "bg-cy-green text-white"
-                  : theme === "dark"
-                    ? "bg-dark-card text-dark-text"
-                    : "bg-white text-cy-dark"
-              }`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage("bn")}
-              aria-label="Switch language to Bangla"
-              aria-pressed={language === "bn"}
-              className={`px-3 py-1.5 transition-colors ${
-                language === "bn"
-                  ? "bg-cy-green text-white"
-                  : theme === "dark"
-                    ? "bg-dark-card text-dark-text"
-                    : "bg-white text-cy-dark"
-              }`}
-            >
-              বাংলা
-            </button>
-          </div>
-
-          {/* Theme toggle */}
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={`p-2 rounded-full border transition-colors ${
-              theme === "dark"
-                ? "border-gray-600 bg-dark-card text-dark-text hover:bg-gray-700"
-                : "border-gray-300 bg-white text-cy-dark hover:bg-gray-100"
-            }`}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-        </div>
-
         {/* Large horizontal hero image */}
         <div className="relative w-full h-[300px] md:h-[380px] lg:h-[460px] xl:h-[500px] overflow-hidden rounded-2xl shadow-xl mb-10 md:mb-14">
           <Image

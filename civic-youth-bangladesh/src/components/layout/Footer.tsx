@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { socialLinks } from "@/data/socialLinks";
 import { socialIconMap } from "@/components/ui/SocialIcons";
 import { Mail, Phone, MapPin } from "lucide-react";
@@ -45,16 +44,7 @@ export function Footer() {
         <div className="py-12 lg:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-4">
-              <Image
-                src="/images/lgo.jpeg"
-                alt="Civic Youth Bangladesh Logo"
-                width={160}
-                height={48}
-                className="h-10 w-auto object-contain"
-              />
-            </Link>
-            <p className={`font-[family-name:var(--font-heading)] text-base font-bold mb-1 ${theme === "dark" ? "text-dark-text" : "text-white"}`}>
+            <p className={`font-[family-name:var(--font-heading)] text-lg font-bold mb-1 ${theme === "dark" ? "text-dark-text" : "text-white"}`}>
               {language === "bn" ? "সিভিক ইয়ুথ বাংলাদেশ" : "Civic Youth Bangladesh"}
             </p>
             <p className={`text-xs mb-4 ${theme === "dark" ? "text-dark-muted" : "text-gray-500"}`}>

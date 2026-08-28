@@ -33,7 +33,6 @@ export function Header() {
     { label: t.nav.blog, href: "/blog" },
     { label: t.nav.impact, href: "/impact" },
     { label: t.nav.getInvolved, href: "/get-involved" },
-    { label: t.nav.opportunities, href: "/opportunities" },
   ];
 
   useEffect(() => {
@@ -77,7 +76,7 @@ export function Header() {
               alt="Civic Youth Bangladesh Logo"
               width={200}
               height={64}
-              className="h-12 w-auto md:h-14 lg:h-16 object-contain"
+              className="h-14 w-auto sm:h-16 md:h-16 lg:h-20 object-contain"
               priority
             />
             <div className="hidden sm:flex flex-col">
