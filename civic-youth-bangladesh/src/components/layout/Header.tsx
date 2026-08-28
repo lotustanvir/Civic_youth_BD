@@ -57,10 +57,10 @@ export function Header() {
   const headerBg = theme === "dark"
     ? isScrolled
       ? "bg-dark-bg/95 backdrop-blur-md shadow-sm border-b border-dark-border py-2"
-      : "bg-dark-bg py-4"
+      : "bg-dark-bg py-3 lg:py-4"
     : isScrolled
       ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-cy-border py-2"
-      : "bg-white py-4";
+      : "bg-white py-3 lg:py-4";
 
   return (
     <header
@@ -71,19 +71,21 @@ export function Header() {
         <div className="flex items-center justify-between">
           {/* Logo + Branding */}
           <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
-            <Image
-              src="/images/lgo.jpeg"
-              alt="Civic Youth Bangladesh Logo"
-              width={200}
-              height={64}
-              className="h-14 w-auto sm:h-16 md:h-16 lg:h-20 object-contain"
-              priority
-            />
+            <div className={`flex-shrink-0 rounded-xl p-1.5 ${theme === "dark" ? "bg-[#111A17]" : "bg-white"}`}>
+              <Image
+                src="/images/lgo.jpeg"
+                alt="Civic Youth Bangladesh Logo"
+                width={200}
+                height={80}
+                className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 object-contain flex-shrink-0"
+                priority
+              />
+            </div>
             <div className="hidden sm:flex flex-col">
-              <span className={`font-[family-name:var(--font-heading)] text-base lg:text-lg font-bold leading-tight ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
+              <span className={`font-[family-name:var(--font-heading)] text-lg xl:text-xl font-bold leading-tight ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
                 {language === "bn" ? "সিভিক ইয়ুথ বাংলাদেশ" : "Civic Youth Bangladesh"}
               </span>
-              <span className={`text-[11px] lg:text-xs leading-tight ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
+              <span className={`text-xs leading-tight ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
                 {language === "bn" ? "আজই সম্পৃক্ত হোন, আগামীর নেতৃত্ব দিন।" : "Engage Today, Lead Tomorrow."}
               </span>
             </div>
