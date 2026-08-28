@@ -70,7 +70,7 @@ export default function ThematicAreasPage() {
               const Icon = iconMap[area.icon];
               const isGreen = area.accentColor === "green";
               const primaryImage = thematicAreaImages[area.id];
-              const hasBothImages = !!(primaryImage && area.secondaryImage);
+              const hasBothImages = !!(primaryImage && area.secondaryImage && primaryImage !== area.secondaryImage);
               const areaTranslation = t.thematicAreas.areas[area.id as keyof typeof t.thematicAreas.areas];
               const fullDescription = t.thematicAreas.fullDescriptions?.[area.id as keyof typeof t.thematicAreas.fullDescriptions];
               return (

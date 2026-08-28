@@ -39,7 +39,7 @@ export const thematicAreas: ThematicArea[] = [
     icon: "Scale",
     accentColor: "red",
     href: "/thematic-areas#civil-political-rights",
-    secondaryImage: "/images/public-speaking-seminar.png.png",
+    secondaryImage: "/images/leadership-circle.png.png",
   },
   {
     id: "media-literacy",
@@ -49,7 +49,7 @@ export const thematicAreas: ThematicArea[] = [
     icon: "Newspaper",
     accentColor: "green",
     href: "/thematic-areas#media-literacy",
-    secondaryImage: "/images/blog-media-literacy.jpg.png",
+    secondaryImage: "/images/blog-leadership.jpg.png",
   },
   {
     id: "youth-skills",
@@ -69,7 +69,7 @@ export const thematicAreas: ThematicArea[] = [
     icon: "Globe",
     accentColor: "green",
     href: "/thematic-areas#climate-resilience",
-    secondaryImage: "/images/community-tree-planting.png.png",
+    secondaryImage: "/images/blog-climate-action.jpg.png",
   },
   {
     id: "research-policy",

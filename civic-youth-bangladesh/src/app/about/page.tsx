@@ -75,37 +75,15 @@ export default function AboutPage() {
                 <p>{t.about.whoWeAreP3}</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className={`relative rounded-2xl overflow-hidden border ${isDark ? "border-dark-border" : "border-cy-border"}`}>
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src="/images/office-image.jpg.png"
-                    alt="Professional workspace representing Civic Youth Bangladesh operations"
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
-                  />
-                  <div className={`absolute bottom-3 left-3 rounded-lg p-1.5 shadow-md ${isDark ? "bg-dark-card/90" : "bg-white/90"} backdrop-blur-sm`}>
-                    <Image
-                      src="/images/cyb-logo.png"
-                      alt="Civic Youth Bangladesh Logo"
-                      width={80}
-                      height={50}
-                      className="h-10 w-auto object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className={`relative rounded-2xl overflow-hidden border ${isDark ? "border-dark-border" : "border-cy-border"}`}>
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src="/images/hero-leadership-team.png.png"
-                    alt="Civic Youth Bangladesh leadership team collaborating"
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
-                  />
-                </div>
+            <div className={`relative rounded-2xl overflow-hidden border ${isDark ? "border-dark-border" : "border-cy-border"}`}>
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/hero-leadership-team.png.png"
+                  alt="Civic Youth Bangladesh leadership team collaborating"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
               </div>
             </div>
           </div>
