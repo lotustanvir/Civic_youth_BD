@@ -77,7 +77,6 @@ export function Header() {
                 width={200}
                 height={80}
                 className="w-[125px] md:w-[150px] lg:w-[180px] h-auto object-contain flex-shrink-0"
-                priority
               />
             </div>
           </Link>
@@ -194,8 +193,7 @@ export function Header() {
                   alt="Civic Youth Bangladesh Logo"
                   width={200}
                   height={80}
-                  className="w-[125px] h-auto object-contain"
-                  priority
+                className="w-[125px] h-auto object-contain"
                 />
               </Link>
               <button

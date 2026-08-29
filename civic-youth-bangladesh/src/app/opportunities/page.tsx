@@ -160,7 +160,7 @@ export default function OpportunitiesPage() {
               {t.opportunities.notFoundText}
             </p>
             <a
-              href="#"
+              href="/get-involved"
               className="inline-flex items-center gap-2 px-6 py-3 bg-cy-green text-white font-semibold rounded-lg hover:bg-cy-green-dark transition-all group"
             >
               {t.opportunities.stayUpdated}
