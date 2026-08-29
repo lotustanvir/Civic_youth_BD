@@ -8,9 +8,9 @@ const en = {
   // Header / Footer nav
   nav: {
     home: "Home",
-    about: "About Us",
+    about: "About",
     themes: "Themes",
-    programs: "Our Programs",
+    programs: "Programs",
     blog: "Blog",
     impact: "Impact",
     getInvolved: "Get Involved",

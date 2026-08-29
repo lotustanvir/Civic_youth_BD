@@ -30,14 +30,14 @@ export function Hero() {
           {/* LEFT — Text Content */}
           <div className="order-1">
             {/* Main Heading */}
-            <h1
-              className={`font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight mb-4 ${
-                isDark ? "text-dark-text" : "text-cy-dark"
-              }`}
-            >
-              Civic Youth
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight mb-4">
+              <span className={isDark ? "text-white" : "text-slate-950"}>
+                Civic Youth
+              </span>
               <br />
-              Bangladesh
+              <span className={isDark ? "text-green-400" : "text-green-700"}>
+                Bangladesh
+              </span>
             </h1>
 
             {/* Sub-heading */}

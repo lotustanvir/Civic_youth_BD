@@ -82,12 +82,12 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Main navigation">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
+                className={`flex items-center gap-1 px-3 py-2 text-base lg:text-[17px] font-medium transition-colors rounded-lg ${
                   theme === "dark"
                     ? "text-dark-text hover:text-cy-green hover:bg-dark-card"
                     : "text-cy-dark hover:text-cy-green hover:bg-cy-green-50"
