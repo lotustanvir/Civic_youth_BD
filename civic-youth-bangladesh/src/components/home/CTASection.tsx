@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useTheme } from "@/components/providers/ThemeProvider";
@@ -38,17 +37,12 @@ export function CTASection() {
             <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-md">
               {t.cta.title}
             </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-sm">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-6 leading-relaxed drop-shadow-sm">
               {t.cta.subtitle}
             </p>
-            <div>
-              <Link
-                href="/get-involved"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-cy-green text-white font-semibold rounded-lg hover:bg-cy-green-light transition-all duration-200 shadow-sm hover:shadow-md group"
-              >
-                {t.cta.becomeMember}
-              </Link>
-            </div>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              {t.cta.motivational}
+            </p>
           </div>
         </div>
       </div>

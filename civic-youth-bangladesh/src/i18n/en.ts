@@ -138,6 +138,8 @@ const en = {
     title: "READY TO MAKE A DIFFERENCE?",
     subtitle:
       "Join a growing community of young people committed to responsible citizenship, ethical leadership and meaningful community action.",
+    motivational:
+      "Your voice matters. Your ideas can inspire change. Your leadership can shape a stronger, more inclusive Bangladesh.",
     becomeMember: "Become a Member",
     volunteer: "Volunteer With CYB",
     partner: "Partner With Us",
