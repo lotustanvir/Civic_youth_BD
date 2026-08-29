@@ -9,13 +9,12 @@ const bn = {
   nav: {
     home: "হোম",
     about: "আমাদের সম্পর্কে",
-    thematicAreas: "বিষয়ভিত্তিক ক্ষেত্র",
-    programs: "কার্যক্রম",
+    themes: "বিষয়সমূহ",
+    programs: "আমাদের কার্যক্রম",
     blog: "ব্লগ",
     impact: "প্রভাব",
     getInvolved: "যুক্ত হোন",
     joinCta: "CYB-তে যোগ দিন",
-    opportunities: "সুযোগ সমূহ",
   },
 
   // Hero
@@ -27,7 +26,7 @@ const bn = {
 
   // Thematic Areas
   thematicAreas: {
-    sectionTitle: "বিষয়ভিত্তিক ক্ষেত্র",
+    sectionTitle: "বিষয়সমূহ",
     sectionSubtitle:
       "তরুণদের জ্ঞান, নেতৃত্ব ও সুযোগে ক্ষমতায়ন করে কমিউনিটি শক্তিশালীকরণ এবং বাংলাদেশের ভবিষ্যৎ গঠন।",
     learnMore: "আরো জানুন",
@@ -142,6 +141,7 @@ const bn = {
     becomeMember: "সদস্য হোন",
     volunteer: "CYB-র সাথে স্বেচ্ছাসেবী হোন",
     partner: "আমাদের সাথে যুক্ত হোন",
+    donate: "দান করুন",
   },
 
   // Newsletter
@@ -371,7 +371,7 @@ const bn = {
 
   // Thematic Areas Page
   thematicAreasPage: {
-    title: "বিষয়ভিত্তিক ক্ষেত্র",
+    title: "বিষয়সমূহ",
     subtitle:
       "নয়টি কৌশলগত ফোকাস এলাকা যা বাংলাদেশ জুড়ে তরুণদের ক্ষমতায়িত করার আমাদের মিশনকে চালিত করে।",
     fallback:

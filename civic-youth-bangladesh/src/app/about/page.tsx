@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { teamMembers } from "@/data/team";
 import {
@@ -11,7 +10,6 @@ import {
   Shield,
   Lightbulb,
   Globe,
-  ArrowRight,
 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useTheme } from "@/components/providers/ThemeProvider";
@@ -204,25 +202,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-cy-green">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
-            {language === "bn" ? "আমাদের মিশনে যোগ দিন" : "JOIN OUR MISSION"}
-          </h2>
-          <p className="text-lg text-cy-green-light mb-8 max-w-2xl mx-auto">
-            {t.about.joinMissionText}
-          </p>
-          <Link
-            href="/get-involved"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-cy-green font-semibold rounded-lg hover:bg-gray-50 transition-all group"
-          >
-            {t.about.getInvolved}
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
         </div>
       </section>
     </>

@@ -28,11 +28,10 @@ export function Header() {
   const navItems = [
     { label: t.nav.home, href: "/" },
     { label: t.nav.about, href: "/about" },
-    { label: t.nav.thematicAreas, href: "/thematic-areas" },
+    { label: t.nav.themes, href: "/thematic-areas" },
     { label: t.nav.programs, href: "/programs" },
     { label: t.nav.blog, href: "/blog" },
     { label: t.nav.impact, href: "/impact" },
-    { label: t.nav.getInvolved, href: "/get-involved" },
   ];
 
   useEffect(() => {
@@ -69,25 +68,17 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo + Branding */}
-          <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0 group">
             <div className={`flex-shrink-0 rounded-xl p-1.5 ${theme === "dark" ? "bg-[#111A17]" : "bg-white"}`}>
               <Image
                 src="/images/cyb-logo.png"
                 alt="Civic Youth Bangladesh Logo"
                 width={200}
                 height={80}
-                className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 object-contain flex-shrink-0"
+                className="w-[125px] md:w-[150px] lg:w-[180px] h-auto object-contain flex-shrink-0"
                 priority
               />
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className={`font-[family-name:var(--font-heading)] text-lg xl:text-xl font-bold leading-tight ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
-                {language === "bn" ? "সিভিক ইয়ুথ বাংলাদেশ" : "Civic Youth Bangladesh"}
-              </span>
-              <span className={`text-xs leading-tight ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
-                {language === "bn" ? "আজই সম্পৃক্ত হোন, আগামীর নেতৃত্ব দিন।" : "Engage Today, Lead Tomorrow."}
-              </span>
             </div>
           </Link>
 
@@ -197,23 +188,15 @@ export function Header() {
         <div className={`lg:hidden fixed inset-0 top-0 z-50 overflow-y-auto ${theme === "dark" ? "bg-dark-bg" : "bg-white"}`}>
           <div className="p-4">
             <div className="flex items-center justify-between mb-6">
-              <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+              <Link href="/" onClick={() => setMobileOpen(false)} className="flex-shrink-0">
                 <Image
                   src="/images/cyb-logo.png"
                   alt="Civic Youth Bangladesh Logo"
                   width={200}
-                  height={48}
-                  className="h-12 w-auto object-contain"
+                  height={80}
+                  className="w-[125px] h-auto object-contain"
                   priority
                 />
-                <div className="flex flex-col">
-                  <span className={`font-[family-name:var(--font-heading)] text-sm font-bold leading-tight ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
-                    {language === "bn" ? "সিভিক ইয়ুথ বাংলাদেশ" : "Civic Youth Bangladesh"}
-                  </span>
-                  <span className={`text-[10px] leading-tight ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
-                    {language === "bn" ? "আজই সম্পৃক্ত হোন, আগামীর নেতৃত্ব দিন।" : "Engage Today, Lead Tomorrow."}
-                  </span>
-                </div>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}

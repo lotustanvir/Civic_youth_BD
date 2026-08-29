@@ -9,13 +9,12 @@ const en = {
   nav: {
     home: "Home",
     about: "About Us",
-    thematicAreas: "Thematic Areas",
-    programs: "Programs",
+    themes: "Themes",
+    programs: "Our Programs",
     blog: "Blog",
     impact: "Impact",
     getInvolved: "Get Involved",
     joinCta: "JOIN CYB",
-    opportunities: "Opportunities",
   },
 
   // Hero
@@ -27,7 +26,7 @@ const en = {
 
   // Thematic Areas
   thematicAreas: {
-    sectionTitle: "THEMATIC AREAS",
+    sectionTitle: "THEMES",
     sectionSubtitle:
       "Empowering young people with the knowledge, leadership and opportunities to strengthen communities and shape Bangladesh\u2019s future.",
     learnMore: "Learn More",
@@ -142,6 +141,7 @@ const en = {
     becomeMember: "Become a Member",
     volunteer: "Volunteer With CYB",
     partner: "Partner With Us",
+    donate: "Donate",
   },
 
   // Newsletter
@@ -371,7 +371,7 @@ const en = {
 
   // Thematic Areas Page
   thematicAreasPage: {
-    title: "Thematic Areas",
+    title: "Themes",
     subtitle:
       "Nine strategic focus areas driving our mission to empower young people across Bangladesh.",
     fallback:

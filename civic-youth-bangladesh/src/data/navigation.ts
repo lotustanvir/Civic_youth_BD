@@ -17,11 +17,11 @@ export const navigation: NavigationItem[] = [
     ],
   },
   {
-    label: "Thematic Areas",
+    label: "Themes",
     href: "/thematic-areas",
   },
   {
-    label: "Programs",
+    label: "Our Programs",
     href: "/programs",
   },
   {
