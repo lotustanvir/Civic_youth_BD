@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { getTranslation } from "@/i18n";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export function Newsletter() {
   const { language } = useLanguage();
@@ -11,9 +13,11 @@ export function Newsletter() {
 
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -27,8 +31,30 @@ export function Newsletter() {
       return;
     }
 
-    setSubmitted(true);
-    setEmail("");
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/newsletter/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data?.error?.message || "Failed to subscribe");
+      }
+
+      const msg = data?.data?.message || t.newsletter.success;
+      setSuccessMsg(msg);
+      setSubmitted(true);
+      setEmail("");
+    } catch (err) {
+      setError(t.newsletter.error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +72,7 @@ export function Newsletter() {
             <div className="flex items-center justify-center gap-3 p-6 bg-cy-green-50 dark:bg-cy-green-50/10 rounded-2xl border border-cy-green/20">
               <CheckCircle className="w-6 h-6 text-cy-green flex-shrink-0" />
               <p className="text-cy-green-dark dark:text-cy-green font-medium">
-                {t.newsletter.success}
+                {successMsg}
               </p>
             </div>
           ) : (
@@ -75,9 +101,14 @@ export function Newsletter() {
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-cy-green text-white font-semibold rounded-xl hover:bg-cy-green-dark transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap"
+                disabled={loading}
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-cy-green text-white font-semibold rounded-xl hover:bg-cy-green-dark transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-4 h-4" />
+                {loading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
                 {t.newsletter.subscribe}
               </button>
             </form>

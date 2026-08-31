@@ -21,6 +21,7 @@ export function Footer() {
     { label: t.nav.programs, href: "/programs" },
     { label: t.nav.blog, href: "/blog" },
     { label: t.nav.impact, href: "/impact" },
+    { label: t.footer.contact, href: "/contact" },
   ];
 
   const legalLinks = [

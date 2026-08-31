@@ -15,7 +15,7 @@ const cspValue = [
   `frame-ancestors 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,
-  `connect-src 'self'`,
+  `connect-src 'self' ${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}`,
 ].join("; ");
 
 const securityHeaders = [
