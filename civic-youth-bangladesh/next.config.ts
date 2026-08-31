@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
+const apiOrigin = process.env.NEXT_PUBLIC_API_URL
+  ? new URL(process.env.NEXT_PUBLIC_API_URL).origin
+  : "http://localhost:5000";
+
 const scriptSrc = `'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`;
 
 const cspValue = [
@@ -15,7 +19,7 @@ const cspValue = [
   `frame-ancestors 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,
-  `connect-src 'self' ${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}`,
+  `connect-src 'self' ${apiOrigin}`,
 ].join("; ");
 
 const securityHeaders = [
