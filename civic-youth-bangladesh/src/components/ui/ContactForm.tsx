@@ -33,7 +33,7 @@ export function ContactForm() {
     setSending(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/v1/contact`, {
+      const res = await fetch(`${API_BASE}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, subject, message }),

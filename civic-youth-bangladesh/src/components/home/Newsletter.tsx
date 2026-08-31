@@ -34,7 +34,7 @@ export function Newsletter() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/v1/newsletter/subscribe`, {
+      const res = await fetch(`${API_BASE}/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

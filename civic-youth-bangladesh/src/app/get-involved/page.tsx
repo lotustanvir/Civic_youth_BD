@@ -104,7 +104,7 @@ export default function GetInvolvedPage() {
     setSubmitting(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/v1/membership`, {
+      const res = await fetch(`${API_BASE}/membership`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -162,7 +162,7 @@ export default function GetInvolvedPage() {
     setVolSubmitting(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/v1/volunteer`, {
+      const res = await fetch(`${API_BASE}/volunteer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -219,7 +219,7 @@ export default function GetInvolvedPage() {
     setPartnerSubmitting(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/v1/partnership`, {
+      const res = await fetch(`${API_BASE}/partnership`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
