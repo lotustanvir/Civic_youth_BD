@@ -32,6 +32,7 @@ export function Header() {
     { label: t.nav.programs, href: "/programs" },
     { label: t.nav.blog, href: "/blog" },
     { label: t.nav.impact, href: "/impact" },
+    { label: "Check Status", href: "/application-status" },
   ];
 
   useEffect(() => {
