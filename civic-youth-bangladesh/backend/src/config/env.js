@@ -5,6 +5,8 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(5000),
   DATABASE_URL: z.string().min(1, "DATABASE_URL is required"),
   FRONTEND_URL: z.string().default("http://localhost:3000"),
+  JWT_SECRET: z.string().min(1, "JWT_SECRET is required"),
+  COOKIE_NAME: z.string().default("cyb_admin_session"),
 });
 
 const parsed = envSchema.safeParse(process.env);

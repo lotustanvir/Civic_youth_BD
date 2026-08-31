@@ -15,3 +15,12 @@ export const strictLimiter = rateLimit({
   legacyHeaders: false,
   message: { success: false, error: { code: 429, message: "Too many requests, please try again later." } },
 });
+
+export const adminLoginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  skipSuccessfulRequests: true,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, error: { code: 429, message: "Too many login attempts, please try again later." } },
+});
