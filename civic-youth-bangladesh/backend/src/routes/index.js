@@ -12,6 +12,7 @@ import newsletterRoutes from "./newsletterRoutes.js";
 import membershipRoutes from "./membershipRoutes.js";
 import volunteerRoutes from "./volunteerRoutes.js";
 import partnershipRoutes from "./partnershipRoutes.js";
+import applicationStatusRoutes from "./applicationStatusRoutes.js";
 import adminRoutes from "./adminRoutes.js";
 
 const router = Router();
@@ -40,6 +41,7 @@ router.use("/newsletter", newsletterRoutes);
 router.use("/membership", membershipRoutes);
 router.use("/volunteer", volunteerRoutes);
 router.use("/partnership", partnershipRoutes);
+router.use("/application-status", applicationStatusRoutes);
 router.use("/admin", adminRoutes);
 
 export default router;

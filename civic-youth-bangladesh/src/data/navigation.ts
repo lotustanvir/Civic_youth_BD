@@ -40,6 +40,7 @@ export const navigation: NavigationItem[] = [
       { label: "Volunteer", href: "/get-involved#volunteer" },
       { label: "Partner With Us", href: "/get-involved#partner" },
       { label: "Donate", href: "/get-involved#donate" },
+      { label: "Check Application Status", href: "/application-status" },
       { label: "Contact", href: "/contact" },
     ],
   },
