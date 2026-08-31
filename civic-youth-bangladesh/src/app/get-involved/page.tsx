@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Users,
   Heart,
@@ -10,6 +11,7 @@ import {
   ArrowRight,
   CheckCircle,
   Loader2,
+  FileSearch,
 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useTheme } from "@/components/providers/ThemeProvider";
@@ -941,6 +943,32 @@ export default function GetInvolvedPage() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Check Application Status */}
+          <div className={`mt-12 rounded-2xl border p-8 lg:p-10 ${theme === "dark" ? "border-dark-border bg-dark-card" : "border-cy-border bg-cy-light"}`}>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-cy-green-50 flex items-center justify-center flex-shrink-0">
+                  <FileSearch className="w-6 h-6 text-cy-green" />
+                </div>
+                <div>
+                  <h3 className={`font-[family-name:var(--font-heading)] text-xl font-bold mb-2 ${theme === "dark" ? "text-dark-text" : "text-cy-dark"}`}>
+                    Check Your Application Status
+                  </h3>
+                  <p className={`text-sm leading-relaxed ${theme === "dark" ? "text-dark-muted" : "text-cy-gray"}`}>
+                    Already submitted an application? Check your membership, volunteer, or partnership application status here.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/application-status"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-cy-green text-white font-semibold rounded-xl hover:bg-cy-green-dark transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap flex-shrink-0"
+              >
+                Check Status
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
