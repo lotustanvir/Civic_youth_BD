@@ -3,7 +3,7 @@ import { SocialLink } from "@/types";
 export const socialLinks: SocialLink[] = [
   {
     name: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/share/1Ei5SbeJbj/",
     icon: "Facebook",
   },
   {
